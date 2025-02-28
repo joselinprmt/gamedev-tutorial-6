@@ -1,7 +1,45 @@
 [gd_scene load_steps=8 format=3 uid="uid://bc2fujtl13g10"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_xsgpf"]
 [ext_resource type="Texture2D" uid="uid://dhsqj8dybb7fq" path="res://assets/kenney_platformerpack/Spritesheets/spritesheet_alien.png" id="2"]
+
+[sub_resource type="GDScript" id="GDScript_175ku"]
+script/source = "extends CharacterBody2D
+
+@export var speed: int = 400
+@export var gravity: int = 1200
+@export var jump_speed: int = -400
+
+
+func get_input():
+	velocity.x = 0
+	if is_on_floor() and Input.is_action_just_pressed(\"jump\"):
+		velocity.y = jump_speed
+	if Input.is_action_pressed(\"right\"):
+		velocity.x += speed
+	if Input.is_action_pressed(\"left\"):
+		velocity.x -= speed
+
+
+func _physics_process(delta):
+	velocity.y += delta * gravity
+	get_input()
+	move_and_slide()
+
+
+func _process(_delta):
+	if not is_on_floor():
+		$Animator.play(\"Jump\")
+	elif velocity.x != 0:
+		$Animator.play(\"Walk\")
+	else:
+		$Animator.play(\"Idle\")
+
+	if velocity.x != 0:
+		if velocity.x > 0:
+			$Sprite2D.flip_h = false
+		else:
+			$Sprite2D.flip_h = true
+"
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(52.924, 76.884)
@@ -62,7 +100,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_xsgpf")
+script = SubResource("GDScript_175ku")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("1")
@@ -78,3 +116,5 @@ frame = 2
 libraries = {
 "": SubResource("AnimationLibrary_sbh6e")
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
