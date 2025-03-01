@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://clguys4qchp5k" path="res://scenes/LoseArea.tscn" id="3_kf3ox"]
 [ext_resource type="Texture2D" uid="uid://chgqimvh7rdh6" path="res://assets/Familiar Looking Rocket.png" id="4_kyjrm"]
 [ext_resource type="Texture2D" uid="uid://1cmkdw30hlrq" path="res://assets/kenney_platformerpack/Spritesheets/spritesheet_gr_snow.png" id="5_0ugb4"]
-[ext_resource type="PackedScene" uid="uid://od43k880mxto" path="res://scenes/WinTrigger.tscn" id="5_kha58"]
+[ext_resource type="PackedScene" uid="uid://od43k880mxto" path="res://scenes/WinArea.tscn" id="5_kha58"]
 [ext_resource type="PackedScene" uid="uid://gravni3cm47n" path="res://scenes/FallingFish.tscn" id="6_qd4db"]
 [ext_resource type="Script" path="res://scenes/Spawner.gd" id="7_w14fx"]
 
