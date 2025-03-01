@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://yqmk0vpvnyxr"]
+[gd_scene load_steps=9 format=4 uid="uid://yqmk0vpvnyxr"]
 
 [ext_resource type="PackedScene" uid="uid://bc2fujtl13g10" path="res://scenes/Player.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://clguys4qchp5k" path="res://scenes/FallTrigger.tscn" id="3_kf3ox"]
+[ext_resource type="PackedScene" uid="uid://clguys4qchp5k" path="res://scenes/LoseArea.tscn" id="3_kf3ox"]
 [ext_resource type="Texture2D" uid="uid://chgqimvh7rdh6" path="res://assets/Familiar Looking Rocket.png" id="4_kyjrm"]
 [ext_resource type="Texture2D" uid="uid://1cmkdw30hlrq" path="res://assets/kenney_platformerpack/Spritesheets/spritesheet_gr_snow.png" id="5_0ugb4"]
 [ext_resource type="PackedScene" uid="uid://od43k880mxto" path="res://scenes/WinTrigger.tscn" id="5_kha58"]
+[ext_resource type="PackedScene" uid="uid://gravni3cm47n" path="res://scenes/FallingFish.tscn" id="6_qd4db"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tjn6u"]
 texture = ExtResource("5_0ugb4")
@@ -56,18 +57,16 @@ position = Vector2(1281, -58)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_kyjrm")
 
-[node name="AreaTrigger" parent="Sprite2D" instance=ExtResource("5_kha58")]
-sceneName = "WinScreen"
+[node name="WinArea" parent="Sprite2D" instance=ExtResource("5_kha58")]
 
-[node name="CollisionShape2D" parent="Sprite2D/AreaTrigger" index="0"]
+[node name="CollisionShape2D" parent="Sprite2D/WinArea" index="0"]
 position = Vector2(-5, 5.5)
 
-[node name="AreaTrigger2" parent="." instance=ExtResource("3_kf3ox")]
-position = Vector2(683, 624)
-sceneName = "Level1"
+[node name="LoseArea" parent="." instance=ExtResource("3_kf3ox")]
+position = Vector2(680, 531)
 
-[node name="CollisionShape2D" parent="AreaTrigger2" index="0"]
-position = Vector2(-2, -2)
+[node name="CollisionShape2D" parent="LoseArea" index="0"]
+position = Vector2(0, -1)
 
 [node name="Player" parent="." instance=ExtResource("1")]
 position = Vector2(446, 165)
@@ -79,5 +78,8 @@ scale = Vector2(0.5, 0.5)
 tile_map_data = PackedByteArray("AAD+/wMAAAABAAAAAAD//wMAAAABAAAAAAAAAAMAAAAHAAEAAAABAAMAAAAHAAEAAAD//wIAAAAHAAEAAAADAAUAAAABAAAAAAAEAAUAAAABAAAAAAAFAAUAAAABAAAAAAAGAAUAAAABAAAAAAAHAAUAAAABAAAAAAAIAAUAAAABAAAAAAAJAAUAAAABAAAAAAAKAAUAAAABAAAAAAAEAAQAAAAHAAEAAAAFAAQAAAAHAAEAAAAGAAQAAAAHAAEAAAAHAAQAAAAHAAEAAAAJAAMAAAAHAAEAAAAKAAMAAAAHAAEAAAAIAAMAAAAHAAEAAAAIAAQAAAABAAAAAAAJAAQAAAABAAAAAAAKAAQAAAABAAAAAAAMAAMAAAABAAEAAAANAAMAAAACAAEAAAAOAAMAAAADAAEAAAAQAAIAAAAAAAEAAAASAAEAAAAGAAEAAAATAAIAAAABAAAAAAAUAAIAAAABAAAAAAAVAAIAAAABAAAAAAAWAAIAAAABAAAAAAAXAAIAAAABAAAAAAATAAEAAAAHAAEAAAAUAAEAAAAHAAEAAAAVAAEAAAAHAAEAAAAWAAEAAAABAAAAAAD+/wEAAAAHAAEAAAD+/wIAAAABAAAAAAAUAAMAAAABAAAAAAAVAAMAAAABAAAAAAAWAAMAAAABAAAAAAAXAAMAAAABAAAAAAAXAAEAAAABAAAAAAAWAAAAAAAHAAEAAAAXAAAAAAAHAAEAAAA=")
 tile_set = SubResource("TileSet_4cpe7")
 
-[editable path="Sprite2D/AreaTrigger"]
-[editable path="AreaTrigger2"]
+[node name="FallingFish" parent="." instance=ExtResource("6_qd4db")]
+position = Vector2(442, -47)
+
+[editable path="Sprite2D/WinArea"]
+[editable path="LoseArea"]
