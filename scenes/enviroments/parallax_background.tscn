@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcsnyw4t6pnw2"]
+
+[ext_resource type="Texture2D" uid="uid://ded1a2u7vdven" path="res://assets/sunny-land/environment/back.png" id="1_x5wdx"]
+[ext_resource type="Texture2D" uid="uid://dgc5c0did4ayx" path="res://assets/sunny-land/environment/middle.png" id="2_vhix1"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayerSky" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 0)
+motion_mirroring = Vector2(768, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxLayerSky"]
+texture_filter = 1
+offset_right = 768.0
+offset_bottom = 240.0
+texture = ExtResource("1_x5wdx")
+stretch_mode = 1
+
+[node name="ParallaxLayerMiddle" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.4, 0)
+motion_mirroring = Vector2(880, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxLayerMiddle"]
+texture_filter = 1
+offset_top = 100.0
+offset_right = 880.0
+offset_bottom = 468.0
+texture = ExtResource("2_vhix1")
+stretch_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1763.0
+offset_bottom = 476.0
+color = Color(0, 0, 0, 0.309804)
