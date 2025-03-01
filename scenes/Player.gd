@@ -23,20 +23,17 @@ func _physics_process(delta):
 
 
 func _process(_delta):
-	if not is_on_floor():
-		$Animator.play("Jump")
+	if is_on_floor() and Input.is_action_just_pressed("jump"):
+		$AnimatedSprite2D.play("Jump")
+	elif not is_on_floor():
+		$AnimatedSprite2D.frame = 1
 	elif velocity.x != 0:
-		$Animator.play("Walk")
+		$AnimatedSprite2D.play("Walk")
 	else:
-		$Animator.play("Idle")
+		$AnimatedSprite2D.play("Idle")
 
 	if velocity.x != 0:
 		if velocity.x > 0:
-			$Sprite2D.flip_h = false
+			$AnimatedSprite2D.flip_h = false
 		else:
-			$Sprite2D.flip_h = true
-
-
-func _on_hurt_box_area_entered(area: Area2D) -> void:
-	if area.get_parent().is_in_group("FallingFish"):
-		get_tree().change_scene_to_file("res://scenes/" + scene_name + ".tscn")
+			$AnimatedSprite2D.flip_h = true
