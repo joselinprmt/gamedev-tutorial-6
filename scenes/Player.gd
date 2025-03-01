@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed: int = 400
 @export var gravity: int = 1200
 @export var jump_speed: int = -400
+@export var scene_name: String = "LoseScreen"
 
 
 func get_input():
@@ -34,3 +35,8 @@ func _process(_delta):
 			$Sprite2D.flip_h = false
 		else:
 			$Sprite2D.flip_h = true
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	if area.get_parent().is_in_group("FallingFish"):
+		get_tree().change_scene_to_file("res://scenes/" + scene_name + ".tscn")

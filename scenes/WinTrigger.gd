@@ -1,7 +1,8 @@
 extends Area2D
 
-@export var sceneName: String = "WinScreen"
+@export var scene_name: String = "WinScreen"
 
-func _on_Win_Trigger_body_entered(body: Node2D) -> void:
+
+func _on_win_trigger_body_entered(body: Node2D) -> void:
 	if body.get_name() == "Player":
-		get_tree().change_scene_to_file(str("res://scenes/" + sceneName + ".tscn"))
+		get_tree().change_scene_to_file(str("res://scenes/" + scene_name + ".tscn"))
