@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://od43k880mxto"]
 
-[ext_resource type="Script" path="res://scenes/WinTrigger.gd" id="1_p403f"]
+[ext_resource type="Script" path="res://scenes/signals/WinTrigger.gd" id="1_p403f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uep35"]
 size = Vector2(104.75, 110.75)

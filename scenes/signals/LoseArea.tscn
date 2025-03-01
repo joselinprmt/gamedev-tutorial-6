@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://clguys4qchp5k"]
 
-[ext_resource type="Script" path="res://scenes/LoseTrigger.gd" id="1_0jj3d"]
+[ext_resource type="Script" path="res://scenes/signals/LoseTrigger.gd" id="1_0jj3d"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x64eo"]
 

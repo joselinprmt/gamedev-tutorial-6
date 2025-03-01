@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgwi8syopa8rf"]
+
+[ext_resource type="Script" path="res://scenes/game_objects/Eagle.gd" id="1_wa4xb"]
+[ext_resource type="Texture2D" uid="uid://vxmljh67xuc2" path="res://assets/sunny-land/character/eagle.png" id="2_snvmm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvsx2"]
+atlas = ExtResource("2_snvmm")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ja4t"]
+atlas = ExtResource("2_snvmm")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1yyi"]
+atlas = ExtResource("2_snvmm")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_niqdn"]
+atlas = ExtResource("2_snvmm")
+region = Rect2(120, 0, 40, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ye0t2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvsx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ja4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1yyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_niqdn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3x15j"]
+radius = 15.0
+height = 40.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxf6h"]
+radius = 34.0
+height = 90.0
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_wa4xb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ye0t2")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_3x15j")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_qxf6h")

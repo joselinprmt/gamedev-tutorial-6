@@ -37,3 +37,8 @@ func _process(_delta):
 			$AnimatedSprite2D.flip_h = false
 		else:
 			$AnimatedSprite2D.flip_h = true
+
+
+func _on_hurt_box_area_entered(area) -> void:
+	if area.get_parent().is_in_group("enemy"):
+		get_tree().change_scene_to_file("res://scenes/signals/" + scene_name + ".tscn")

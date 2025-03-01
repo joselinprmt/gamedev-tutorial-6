@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://bc2fujtl13g10"]
 
-[ext_resource type="Script" path="res://scenes/Player.gd" id="1_u17em"]
+[ext_resource type="Script" path="res://scenes/game_objects/Player.gd" id="1_u17em"]
 [ext_resource type="Texture2D" uid="uid://bt8gb54hjkhl1" path="res://assets/sunny-land/character/player.png" id="2_d5558"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_831bm"]
