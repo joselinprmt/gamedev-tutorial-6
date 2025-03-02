@@ -356,7 +356,7 @@ offset_top = -25.0
 offset_right = 239.0
 offset_bottom = 33.0
 text = "I think the house
-is close..."
+is nearby..."
 label_settings = SubResource("LabelSettings_iyux3")
 visible_characters = 0
 visible_ratio = 0.0

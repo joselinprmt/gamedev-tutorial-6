@@ -13,18 +13,18 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	if not is_on_floor():
-		velocity.y =+ gravity + delta
-		
+		velocity.y = gravity + delta
+
 	if !$RayCast2D.is_colliding() and is_on_floor():
 		flip()
 
 	velocity.x = speed
 	move_and_slide()
-	
-	
+
+
 func flip():
 	facing_right = !facing_right
-	
+
 	scale.x = abs(scale.x) * -1
 	if facing_right:
 		speed = abs(speed)

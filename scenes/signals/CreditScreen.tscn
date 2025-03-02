@@ -1,0 +1,106 @@
+[gd_scene load_steps=12 format=3 uid="uid://cobv82bwew2ns"]
+
+[ext_resource type="Script" path="res://scenes/signals/CreditScreen.gd" id="1_f2ero"]
+[ext_resource type="PackedScene" uid="uid://bcsnyw4t6pnw2" path="res://scenes/enviroments/ParallaxBg.tscn" id="2_5n5m5"]
+[ext_resource type="PackedScene" uid="uid://bc2fujtl13g10" path="res://scenes/game_objects/Player.tscn" id="3_qx6m4"]
+[ext_resource type="Script" path="res://scenes/game_objects/PlayerWin.gd" id="4_b5es5"]
+[ext_resource type="Script" path="res://scenes/enviroments/AnimatedText.gd" id="5_8src0"]
+[ext_resource type="FontFile" uid="uid://dwijq5l78s8p2" path="res://assets/vcr_osd.ttf" id="6_psomw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7vuyb"]
+font = ExtResource("6_psomw")
+font_size = 23
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0jih"]
+size = Vector2(142, 130)
+
+[sub_resource type="Animation" id="Animation_sycpa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_fduvn"]
+resource_name = "show_text"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.93333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_as27d"]
+_data = {
+"RESET": SubResource("Animation_sycpa"),
+"show_text": SubResource("Animation_fduvn")
+}
+
+[node name="CreditScreen" type="Sprite2D"]
+position = Vector2(512.329, 294.151)
+script = ExtResource("1_f2ero")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_5n5m5")]
+scale = Vector2(2.5, 2.5)
+transform = Transform2D(2.5, 0, 0, 2.5, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("3_qx6m4")]
+position = Vector2(62.671, 116.849)
+script = ExtResource("4_b5es5")
+
+[node name="WinText" type="Node2D" parent="Player"]
+script = ExtResource("5_8src0")
+
+[node name="Label" type="Label" parent="Player/WinText"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -120.5
+offset_right = 311.0
+offset_bottom = 121.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Congratulations! You made it back home again.
+Press Enter or Space to Restart.
+
+
+
+
+
+
+Game by joselinprmt 💗
+Assets by Ansimuz at itch.io."
+label_settings = SubResource("LabelSettings_7vuyb")
+horizontal_alignment = 1
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Area2D" type="Area2D" parent="Player/WinText"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/WinText/Area2D"]
+shape = SubResource("RectangleShape2D_e0jih")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/WinText"]
+libraries = {
+"": SubResource("AnimationLibrary_as27d")
+}
+
+[connection signal="body_entered" from="Player/WinText/Area2D" to="Player/WinText" method="_on_area_2d_body_entered"]
