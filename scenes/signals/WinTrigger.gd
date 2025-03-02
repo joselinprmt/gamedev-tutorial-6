@@ -5,4 +5,6 @@ extends Area2D
 
 func _on_win_trigger_body_entered(body) -> void:
 	if body.get_name() == "Player":
+		await get_tree().create_timer(1).timeout
 		get_tree().change_scene_to_file(str("res://scenes/signals/" + scene_name + ".tscn"))
+  

@@ -1,7 +1,103 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgikhujojcb34"]
+[gd_scene load_steps=12 format=3 uid="uid://cgikhujojcb34"]
 
-[ext_resource type="Texture2D" uid="uid://d0xi3jghkp5hk" path="res://assets/Keanu.png" id="1"]
+[ext_resource type="Script" path="res://scenes/signals/WinScreen.gd" id="1_axfvc"]
+[ext_resource type="PackedScene" uid="uid://bcsnyw4t6pnw2" path="res://scenes/enviroments/ParallaxBg.tscn" id="1_n36yc"]
+[ext_resource type="Script" path="res://scenes/enviroments/AnimatedText.gd" id="2_4axva"]
+[ext_resource type="FontFile" uid="uid://dwijq5l78s8p2" path="res://assets/vcr_osd.ttf" id="3_o046o"]
+[ext_resource type="PackedScene" uid="uid://bc2fujtl13g10" path="res://scenes/game_objects/Player.tscn" id="5_yirdx"]
+[ext_resource type="Script" path="res://scenes/game_objects/PlayerWin.gd" id="6_na0bj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7vuyb"]
+font = ExtResource("3_o046o")
+font_size = 23
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0jih"]
+size = Vector2(142, 130)
+
+[sub_resource type="Animation" id="Animation_sycpa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_fduvn"]
+resource_name = "show_text"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.93333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_as27d"]
+_data = {
+"RESET": SubResource("Animation_sycpa"),
+"show_text": SubResource("Animation_fduvn")
+}
 
 [node name="WinScreen" type="Sprite2D"]
 position = Vector2(512.329, 294.151)
-texture = ExtResource("1")
+script = ExtResource("1_axfvc")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_n36yc")]
+scale = Vector2(2.5, 2.5)
+transform = Transform2D(2.5, 0, 0, 2.5, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("5_yirdx")]
+position = Vector2(62.671, 116.849)
+script = ExtResource("6_na0bj")
+
+[node name="WinText" type="Node2D" parent="Player"]
+script = ExtResource("2_4axva")
+
+[node name="Label" type="Label" parent="Player/WinText"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -245.0
+offset_top = -105.0
+offset_right = 266.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You sleep well. Without realizing it, a new day has arrived.
+
+
+
+
+
+Proceed to the next level..."
+label_settings = SubResource("LabelSettings_7vuyb")
+horizontal_alignment = 1
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Area2D" type="Area2D" parent="Player/WinText"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/WinText/Area2D"]
+shape = SubResource("RectangleShape2D_e0jih")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/WinText"]
+libraries = {
+"": SubResource("AnimationLibrary_as27d")
+}
+
+[connection signal="body_entered" from="Player/WinText/Area2D" to="Player/WinText" method="_on_area_2d_body_entered"]

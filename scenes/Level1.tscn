@@ -1,13 +1,15 @@
-[gd_scene load_steps=11 format=4 uid="uid://yqmk0vpvnyxr"]
+[gd_scene load_steps=19 format=4 uid="uid://yqmk0vpvnyxr"]
 
 [ext_resource type="PackedScene" uid="uid://bc2fujtl13g10" path="res://scenes/game_objects/Player.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://bcsnyw4t6pnw2" path="res://scenes/enviroments/parallax_background.tscn" id="1_e04dm"]
+[ext_resource type="PackedScene" uid="uid://bcsnyw4t6pnw2" path="res://scenes/enviroments/ParallaxBg.tscn" id="1_e04dm"]
 [ext_resource type="Texture2D" uid="uid://dpkb387a6vub" path="res://assets/sunny-land/environment/plant-house.png" id="1_vmane"]
 [ext_resource type="PackedScene" uid="uid://clguys4qchp5k" path="res://scenes/signals/LoseArea.tscn" id="3_kf3ox"]
 [ext_resource type="Texture2D" uid="uid://bkj58ip6jmf05" path="res://assets/sunny-land/environment/tileset.png" id="5_1kpvm"]
 [ext_resource type="PackedScene" uid="uid://od43k880mxto" path="res://scenes/signals/WinArea.tscn" id="5_kha58"]
 [ext_resource type="PackedScene" uid="uid://bgwi8syopa8rf" path="res://scenes/game_objects/Eagle.tscn" id="6_uvhyf"]
 [ext_resource type="Script" path="res://scenes/game_objects/Spawner.gd" id="7_7cj3o"]
+[ext_resource type="Script" path="res://scenes/enviroments/AnimatedText.gd" id="9_2fui3"]
+[ext_resource type="FontFile" uid="uid://dwijq5l78s8p2" path="res://assets/vcr_osd.ttf" id="10_r0x4t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3ry5"]
 texture = ExtResource("5_1kpvm")
@@ -218,12 +220,59 @@ texture = ExtResource("5_1kpvm")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_l3ry5")
 
+[sub_resource type="LabelSettings" id="LabelSettings_iyux3"]
+font = ExtResource("10_r0x4t")
+font_size = 23
+
+[sub_resource type="Animation" id="Animation_lto12"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xao8o"]
+resource_name = "show_text"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_snajw"]
+_data = {
+"RESET": SubResource("Animation_lto12"),
+"show_text": SubResource("Animation_xao8o")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yku8b"]
+size = Vector2(142, 130)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yl2bt"]
+font = ExtResource("10_r0x4t")
+font_size = 30
+
 [node name="Level1" type="Node2D"]
 position = Vector2(129, 156)
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_e04dm")]
-scale = Vector2(2, 2)
-transform = Transform2D(2, 0, 0, 2, 0, 0)
+scale = Vector2(2.5, 2.5)
+transform = Transform2D(2.5, 0, 0, 2.5, 0, 0)
 
 [node name="House" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -242,12 +291,134 @@ scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAD+/wMAAAABAAMAAAD//wQAAAADAAEAAAAAAAQAAAADAAEAAAD+/wQAAAABAAMAAAD//wUAAAABAAMAAAAAAAUAAAABAAMAAAD+/wUAAAABAAMAAAABAAUAAAAFAAEAAAD//wMAAAABAAUAAAD//wEAAAABAAUAAAD//wIAAAABAAUAAAD+/wIAAAABAAMAAAD+/wEAAAABAAMAAAD+/wAAAAABAAEAAAD//wAAAAAFAAEAAAAAAAMAAAABAAcAAAD+////AAABAAcAAAAEAAQAAAABAAEAAAAFAAQAAAADAAEAAAAGAAQAAAADAAEAAAAHAAQAAAABAAEAAAAIAAUAAAABAAEAAAAJAAUAAAABAAEAAAAKAAQAAAABAAEAAAAKAAUAAAABAAMAAAAEAAUAAAABAAMAAAAHAAUAAAABAAMAAAAFAAUAAAABAAMAAAAGAAUAAAABAAMAAAANAAMAAAAPAA4AAAAOAAMAAAARAA4AAAAPAAMAAAATAA4AAAARAAIAAAAPAA4AAAASAAIAAAATAA4AAAAFAAMAAAADAAcAAAAJAAQAAAABAAcAAAAPAAIAAAABAAcAAAAYAAEAAAATAA4AAAAXAAEAAAARAA4AAAAUAAEAAAAPAA4AAAAVAAEAAAARAA4AAAAWAAEAAAARAA4AAAAbAAEAAAABAAEAAAAcAAAAAAABAAEAAAAdAAAAAAADAAEAAAAeAAAAAAABAAEAAAAfAP//AAABAAEAAAAgAP//AAADAAEAAAAhAP//AAADAAEAAAAiAP//AAADAAEAAAAjAP//AAADAAEAAAAkAP//AAADAAEAAAAlAP//AAAFAAEAAAAmAP3/AAABAAEAAAAnAP3/AAAFAAEAAAAnAPv/AAABAAEAAAAoAPv/AAABAAEAAAApAPv/AAAFAAEAAAAaAAEAAAALAAcAAAAVAAAAAAADAAcAAAAWAAAAAAABAAcAAAAkAP7/AAABAAcAAAAjAP7/AAABAAcAAAAdAP//AAADAAcAAAAmAPz/AAABAAcAAAAmAPv/AAALAAcAAAAnAPz/AAABAAUAAAAoAPz/AAABAAUAAAApAPz/AAABAAUAAAApAP3/AAABAAUAAAAoAP3/AAABAAUAAAAoAP7/AAABAAUAAAAnAP7/AAABAAUAAAAmAP7/AAABAAUAAAAmAP//AAABAAUAAAAnAP//AAABAAMAAAAoAP//AAABAAMAAAApAP//AAABAAUAAAApAP7/AAABAAUAAAApAAAAAAABAAUAAAAoAAAAAAABAAUAAAAnAAAAAAABAAUAAAAmAAAAAAABAAUAAAAlAAAAAAABAAUAAAAkAAAAAAABAAUAAAAjAAAAAAABAAUAAAAiAAAAAAABAAUAAAAhAAAAAAABAAUAAAAgAAAAAAABAAUAAAAfAAAAAAAFAAEAAAAcAAEAAAABAAUAAAAdAAEAAAABAAUAAAAeAAEAAAABAAUAAAAfAAEAAAABAAUAAAAgAAEAAAABAAUAAAAhAAEAAAABAAUAAAAiAAEAAAABAAUAAAAjAAEAAAABAAUAAAAkAAEAAAABAAUAAAAlAAEAAAABAAUAAAAmAAEAAAABAAUAAAAnAAEAAAABAAUAAAAoAAEAAAABAAUAAAApAAEAAAABAAUAAAALAAQAAAAFAAEAAAALAAUAAAABAAMAAAD+/wYAAAABAAMAAAD//wYAAAABAAMAAAAAAAYAAAABAAMAAAABAAYAAAABAAMAAAAEAAYAAAABAAMAAAAFAAYAAAABAAMAAAAGAAYAAAABAAMAAAAHAAYAAAABAAMAAAAIAAYAAAABAAMAAAAJAAYAAAABAAMAAAAKAAYAAAABAAMAAAALAAYAAAABAAMAAAAbAAIAAAABAAUAAAAbAAMAAAABAAUAAAAbAAQAAAABAAUAAAAbAAUAAAABAAUAAAAbAAYAAAABAAUAAAAbAAcAAAABAAUAAAAcAAcAAAABAAUAAAAcAAYAAAABAAUAAAAcAAUAAAABAAUAAAAcAAQAAAABAAUAAAAcAAMAAAABAAUAAAAcAAIAAAABAAUAAAAdAAIAAAABAAUAAAAeAAIAAAABAAUAAAAfAAIAAAABAAUAAAAoAAIAAAABAAUAAAAnAAIAAAABAAUAAAAmAAIAAAABAAUAAAAlAAIAAAABAAUAAAAkAAIAAAABAAUAAAAjAAIAAAABAAUAAAAiAAIAAAABAAUAAAAhAAIAAAABAAUAAAAgAAIAAAABAAUAAAApAAIAAAABAAUAAAApAAMAAAABAAUAAAApAAQAAAABAAUAAAAoAAQAAAABAAUAAAAnAAMAAAABAAUAAAAmAAMAAAABAAUAAAAlAAMAAAABAAUAAAAkAAMAAAABAAUAAAAjAAMAAAABAAUAAAAiAAMAAAABAAUAAAAhAAMAAAABAAUAAAAgAAMAAAABAAUAAAAfAAMAAAABAAUAAAAeAAMAAAABAAUAAAAdAAMAAAABAAUAAAAdAAQAAAABAAUAAAAeAAQAAAABAAUAAAAfAAQAAAABAAUAAAAgAAQAAAABAAUAAAAhAAQAAAABAAUAAAAiAAQAAAABAAUAAAAjAAQAAAABAAUAAAAkAAQAAAABAAUAAAAlAAQAAAABAAUAAAAmAAQAAAABAAUAAAAnAAQAAAABAAUAAAAoAAMAAAABAAUAAAAoAAUAAAABAAUAAAApAAUAAAABAAUAAAApAAYAAAABAAUAAAApAAcAAAABAAUAAAAdAAcAAAABAAUAAAAdAAYAAAABAAUAAAAdAAUAAAABAAUAAAAeAAUAAAABAAUAAAAfAAUAAAABAAUAAAAgAAUAAAABAAUAAAAhAAUAAAABAAUAAAAiAAUAAAABAAUAAAAjAAUAAAABAAUAAAAkAAUAAAABAAUAAAAlAAUAAAABAAUAAAAmAAUAAAABAAUAAAAnAAUAAAABAAUAAAAnAAYAAAABAAUAAAAoAAYAAAABAAUAAAAoAAcAAAABAAUAAAAnAAcAAAABAAUAAAAmAAcAAAABAAUAAAAlAAcAAAABAAUAAAAkAAcAAAABAAUAAAAjAAcAAAABAAUAAAAiAAcAAAABAAUAAAAhAAcAAAABAAUAAAAgAAcAAAABAAUAAAAfAAcAAAABAAUAAAAeAAcAAAABAAUAAAAiAAYAAAABAAUAAAAhAAYAAAABAAUAAAAgAAYAAAABAAUAAAAfAAYAAAABAAUAAAAjAAYAAAABAAUAAAAkAAYAAAABAAUAAAAlAAYAAAABAAUAAAAmAAYAAAABAAUAAAAeAAYAAAABAAUAAAALAAcAAAABAAMAAAAKAAcAAAABAAMAAAAJAAcAAAABAAMAAAAIAAcAAAABAAMAAAAHAAcAAAABAAMAAAAGAAcAAAABAAMAAAAFAAcAAAABAAMAAAAEAAcAAAABAAMAAAABAAcAAAABAAMAAAAAAAcAAAABAAMAAAD//wcAAAABAAMAAAD+/wcAAAABAAMAAAD+/wgAAAABAAMAAAD//wgAAAABAAMAAAAAAAgAAAABAAMAAAABAAgAAAABAAMAAAAEAAgAAAABAAMAAAAFAAgAAAABAAMAAAAGAAgAAAABAAMAAAAHAAgAAAABAAMAAAAIAAgAAAABAAMAAAAJAAgAAAABAAMAAAAKAAgAAAABAAMAAAALAAgAAAABAAMAAAAbAAgAAAABAAUAAAAcAAgAAAABAAUAAAAdAAgAAAABAAUAAAAeAAgAAAABAAUAAAAfAAgAAAABAAUAAAAgAAgAAAABAAUAAAAhAAgAAAABAAUAAAAiAAgAAAABAAUAAAAjAAgAAAABAAUAAAAkAAgAAAABAAUAAAAlAAgAAAABAAUAAAAmAAgAAAABAAUAAAAnAAgAAAABAAUAAAAoAAgAAAABAAUAAAApAAgAAAABAAUAAAApAPr/AAABAAcAAAAoAPr/AAADAAcAAAA=")
 tile_set = SubResource("TileSet_oswxw")
 
+[node name="AnimatedText" type="Node" parent="."]
+
+[node name="AnimatedText" type="Node2D" parent="AnimatedText"]
+position = Vector2(463, 216)
+script = ExtResource("9_2fui3")
+
+[node name="Label" type="Label" parent="AnimatedText/AnimatedText"]
+offset_left = 33.0
+offset_top = -25.0
+offset_right = 239.0
+offset_bottom = 33.0
+text = "It's time to 
+go home..."
+label_settings = SubResource("LabelSettings_iyux3")
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedText/AnimatedText"]
+libraries = {
+"": SubResource("AnimationLibrary_snajw")
+}
+
+[node name="Area2D" type="Area2D" parent="AnimatedText/AnimatedText"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedText/AnimatedText/Area2D"]
+position = Vector2(103, 130)
+shape = SubResource("RectangleShape2D_yku8b")
+
+[node name="AnimatedText2" type="Node2D" parent="AnimatedText"]
+position = Vector2(951, 151)
+script = ExtResource("9_2fui3")
+
+[node name="Label" type="Label" parent="AnimatedText/AnimatedText2"]
+offset_left = 33.0
+offset_top = -25.0
+offset_right = 239.0
+offset_bottom = 33.0
+text = "Beware of those 
+falling eagle!"
+label_settings = SubResource("LabelSettings_iyux3")
+visible_characters = 0
+visible_ratio = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedText/AnimatedText2"]
+libraries = {
+"": SubResource("AnimationLibrary_snajw")
+}
+
+[node name="Area2D" type="Area2D" parent="AnimatedText/AnimatedText2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedText/AnimatedText2/Area2D"]
+position = Vector2(103, 130)
+shape = SubResource("RectangleShape2D_yku8b")
+
+[node name="AnimatedText3" type="Node2D" parent="AnimatedText"]
+position = Vector2(1457, 22)
+script = ExtResource("9_2fui3")
+
+[node name="Label" type="Label" parent="AnimatedText/AnimatedText3"]
+offset_left = 33.0
+offset_top = -25.0
+offset_right = 239.0
+offset_bottom = 33.0
+text = "I think the house
+is close..."
+label_settings = SubResource("LabelSettings_iyux3")
+visible_characters = 0
+visible_ratio = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedText/AnimatedText3"]
+libraries = {
+"": SubResource("AnimationLibrary_snajw")
+}
+
+[node name="Area2D" type="Area2D" parent="AnimatedText/AnimatedText3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedText/AnimatedText3/Area2D"]
+position = Vector2(103, 130)
+shape = SubResource("RectangleShape2D_yku8b")
+
+[node name="AnimatedText4" type="Node2D" parent="AnimatedText"]
+position = Vector2(1920, -39)
+script = ExtResource("9_2fui3")
+
+[node name="Label" type="Label" parent="AnimatedText/AnimatedText4"]
+offset_left = 33.0
+offset_top = -25.0
+offset_right = 239.0
+offset_bottom = 33.0
+text = "There it is!
+Time to sleep..."
+label_settings = SubResource("LabelSettings_iyux3")
+visible_characters = 0
+visible_ratio = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedText/AnimatedText4"]
+libraries = {
+"": SubResource("AnimationLibrary_snajw")
+}
+
+[node name="Area2D" type="Area2D" parent="AnimatedText/AnimatedText4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedText/AnimatedText4/Area2D"]
+position = Vector2(103, 130)
+shape = SubResource("RectangleShape2D_yku8b")
+
 [node name="Player" parent="." instance=ExtResource("1")]
 position = Vector2(446, 165)
 collision_layer = 3
 collision_mask = 3
 
+[node name="Level Info" type="Label" parent="Player"]
+offset_left = -532.0
+offset_top = -286.0
+offset_right = -409.0
+offset_bottom = -259.0
+text = "LEVEL 1"
+label_settings = SubResource("LabelSettings_yl2bt")
+
 [node name="Spawner" type="Node2D" parent="."]
-position = Vector2(971, -235)
+position = Vector2(971, -496)
 script = ExtResource("7_7cj3o")
 obstacle = ExtResource("6_uvhyf")
+
+[connection signal="body_entered" from="AnimatedText/AnimatedText/Area2D" to="AnimatedText/AnimatedText" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="AnimatedText/AnimatedText2/Area2D" to="AnimatedText/AnimatedText2" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="AnimatedText/AnimatedText3/Area2D" to="AnimatedText/AnimatedText3" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="AnimatedText/AnimatedText4/Area2D" to="AnimatedText/AnimatedText4" method="_on_area_2d_body_entered"]
