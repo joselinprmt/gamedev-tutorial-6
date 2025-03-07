@@ -2,8 +2,7 @@
 
 ![image](https://github.com/user-attachments/assets/e3972c7c-0504-463e-a046-96adf90e0c65)
 
-![Screenshot (5663)](https://github.com/user-attachments/assets/5dd3a9de-8a64-4108-83fe-452798f4e14f)
-
+![image](https://github.com/user-attachments/assets/40338aad-a1a7-47e0-b404-bd2d3d9b567c)
 
 ## Penambahan yang dilakukan
 
@@ -20,13 +19,13 @@ Pertama, setelah menyelesaikan level 1 dan menyesuaikan Texture dan Sprite, pada
 
 ![Screenshot 2025-03-02 092134](https://github.com/user-attachments/assets/0867e9f4-4453-4f4f-a332-37ac3c71ad24)
 
-![image](https://github.com/user-attachments/assets/2e34621e-76fe-4d75-ab8c-0424e834f5e3)
+![image](https://github.com/user-attachments/assets/c9acde9d-757c-46b0-a265-27e7e62b8128)
 
 ![image](https://github.com/user-attachments/assets/1abdd929-b229-4a10-a9d4-290cd35c1fe9)
 
 Lalu akan dibuat juga file scene Level 2 dengan tilemap dan text yang akan muncul jika Player melewati trigger area. Ditambahkan juga Parallax background yang memberikan ilusi jarak ketika Player bergerak. Cara menambahkan tilemap mirip seperti pada pengerjaan Level 1.
 
-![Screenshot (5667)](https://github.com/user-attachments/assets/23096689-0c0a-46ba-865a-8f43bf976751)
+![image](https://github.com/user-attachments/assets/8d39254c-7d89-48bb-935b-d529e4293534)
 
 Untuk mengedit dan menganimasi teks, pertama akan dibuat Node AnimatedText. lalu tambahkan child Label untuk formatting dan isi teks dan Area2D untuk mengecek apakah Player sedang berada di dalam area. Pada scriptnya, akan diset visible rationya (visible ratio adalah rasio seberapa banyak huruf yang ditampilkan. 1 berarti ditampilkan semua huruf, 0 berarti tidak ada huruf yang ditampilkan.) Terakhir, ditambahkan juga animation player untuk label visible ratio 0 ke 1 untuk memberikan animasi pada tulisan tersebut.
 
@@ -42,7 +41,7 @@ Dan CreditScreen ketika telah berhasil menyelesaikan level 2:
 
 ![image](https://github.com/user-attachments/assets/267b7ade-9711-4be4-a84d-3c72aa47e3b3)
 
-Dengan begitu, level 2 telah berhasil ditambahkan ✨
+Dengan begitu, level 2 telah berhasil diimplementasikan ✨
 
 ## Referensi
 
