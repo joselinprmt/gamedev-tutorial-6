@@ -98,5 +98,5 @@ scene_to_load = "Level2"
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 
-[connection signal="pressed" from="VBoxContainer/LinkButton" to="VBoxContainer/LinkButton" method="_on_New_Game_pressed"]
-[connection signal="pressed" from="VBoxContainer/LinkButton2" to="VBoxContainer/LinkButton2" method="_on_New_Game_pressed"]
+[connection signal="pressed" from="VBoxContainer/LinkButton" to="VBoxContainer/LinkButton" method="_on_new_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/LinkButton2" to="VBoxContainer/LinkButton2" method="_on_new_game_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cobv82bwew2ns"]
+[gd_scene load_steps=13 format=3 uid="uid://cobv82bwew2ns"]
 
 [ext_resource type="Script" path="res://scenes/signals/CreditScreen.gd" id="1_f2ero"]
 [ext_resource type="PackedScene" uid="uid://bcsnyw4t6pnw2" path="res://scenes/enviroments/ParallaxBg.tscn" id="2_5n5m5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/game_objects/PlayerWin.gd" id="4_b5es5"]
 [ext_resource type="Script" path="res://scenes/enviroments/AnimatedText.gd" id="5_8src0"]
 [ext_resource type="FontFile" uid="uid://dwijq5l78s8p2" path="res://assets/vcr_osd.ttf" id="6_psomw"]
+[ext_resource type="Script" path="res://scenes/signals/LinkButtons.gd" id="7_4g67s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7vuyb"]
 font = ExtResource("6_psomw")
@@ -103,4 +104,17 @@ libraries = {
 "": SubResource("AnimationLibrary_as27d")
 }
 
+[node name="LinkButton" type="LinkButton" parent="."]
+offset_left = -88.329
+offset_top = 265.849
+offset_right = 210.671
+offset_bottom = 292.849
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("6_psomw")
+theme_override_font_sizes/font_size = 30
+text = "Back to Main menu"
+script = ExtResource("7_4g67s")
+scene_to_load = "signals/MainMenu"
+
 [connection signal="body_entered" from="Player/WinText/Area2D" to="Player/WinText" method="_on_area_2d_body_entered"]
+[connection signal="pressed" from="LinkButton" to="LinkButton" method="_on_new_game_pressed"]
