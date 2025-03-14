@@ -43,5 +43,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		if Global.lives <= 0:
 			call_deferred("change_scene")
 		else:
-			get_tree().call_deferred("change_scene_to_file", "res://scenes/Level" + str(Global.level) + ".tscn")
-			
+			get_tree().call_deferred(
+				"change_scene_to_file", "res://scenes/Level" + str(Global.level) + ".tscn"
+			)

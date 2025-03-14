@@ -4,4 +4,4 @@ extends Node2D
 
 
 func _ready():
-	Global.level = level_number  
+	Global.level = level_number

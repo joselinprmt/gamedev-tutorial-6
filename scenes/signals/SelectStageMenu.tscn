@@ -1,47 +1,40 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1cg51f01jyhe"]
+[gd_scene load_steps=11 format=3 uid="uid://dkaanb7t5e5c2"]
 
-[ext_resource type="Texture2D" uid="uid://bt8gb54hjkhl1" path="res://assets/sunny-land/character/player.png" id="1_i0gvi"]
-[ext_resource type="FontFile" uid="uid://dwijq5l78s8p2" path="res://assets/vcr_osd.ttf" id="1_pylab"]
-[ext_resource type="Script" path="res://scenes/signals/LinkButtons.gd" id="2_lxr86"]
-[ext_resource type="PackedScene" uid="uid://bcsnyw4t6pnw2" path="res://scenes/enviroments/ParallaxBg.tscn" id="4_krx85"]
+[ext_resource type="Texture2D" uid="uid://bt8gb54hjkhl1" path="res://assets/sunny-land/character/player.png" id="1_wvu33"]
+[ext_resource type="FontFile" uid="uid://dwijq5l78s8p2" path="res://assets/vcr_osd.ttf" id="2_qkxcn"]
+[ext_resource type="Script" path="res://scenes/signals/LinkButtons.gd" id="3_1hl2p"]
+[ext_resource type="PackedScene" uid="uid://bcsnyw4t6pnw2" path="res://scenes/enviroments/ParallaxBg.tscn" id="4_t01b4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_igiao"]
-atlas = ExtResource("1_i0gvi")
-region = Rect2(33, 32, 33, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgn2h"]
+atlas = ExtResource("1_wvu33")
+region = Rect2(0, 0, 33, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ncuic"]
-atlas = ExtResource("1_i0gvi")
-region = Rect2(66, 32, 33, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_83kia"]
+atlas = ExtResource("1_wvu33")
+region = Rect2(33, 0, 33, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_esal6"]
-atlas = ExtResource("1_i0gvi")
-region = Rect2(99, 32, 33, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_c55xi"]
+atlas = ExtResource("1_wvu33")
+region = Rect2(66, 0, 33, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_41as0"]
-atlas = ExtResource("1_i0gvi")
-region = Rect2(132, 32, 33, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_32p6e"]
-atlas = ExtResource("1_i0gvi")
-region = Rect2(165, 32, 33, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tnpj"]
+atlas = ExtResource("1_wvu33")
+region = Rect2(99, 0, 33, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6hu67"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_igiao")
+"texture": SubResource("AtlasTexture_xgn2h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ncuic")
+"texture": SubResource("AtlasTexture_83kia")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_esal6")
+"texture": SubResource("AtlasTexture_c55xi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_41as0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_32p6e")
+"texture": SubResource("AtlasTexture_0tnpj")
 }],
 "loop": true,
 "name": &"default",
@@ -49,7 +42,7 @@ animations = [{
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xk1ni"]
-font = ExtResource("1_pylab")
+font = ExtResource("2_qkxcn")
 font_size = 100
 font_color = Color(0.864826, 0.514634, 0.307102, 1)
 outline_size = 20
@@ -81,27 +74,27 @@ frame_progress = 0.92663
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Fox 
-Adventure"
+text = "Select 
+Stage"
 label_settings = SubResource("LabelSettings_xk1ni")
 
 [node name="LinkButton" type="LinkButton" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_pylab")
+theme_override_fonts/font = ExtResource("2_qkxcn")
 theme_override_font_sizes/font_size = 30
-text = "New Game"
-script = ExtResource("2_lxr86")
+text = "Level 1"
+script = ExtResource("3_1hl2p")
 scene_to_load = "Level1"
 
 [node name="LinkButton2" type="LinkButton" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_pylab")
+theme_override_fonts/font = ExtResource("2_qkxcn")
 theme_override_font_sizes/font_size = 30
-text = "Select Stage"
-script = ExtResource("2_lxr86")
-scene_to_load = "signals/SelectStageMenu"
+text = "Level 2"
+script = ExtResource("3_1hl2p")
+scene_to_load = "Level2"
 
-[node name="ParallaxBackground" parent="." instance=ExtResource("4_krx85")]
+[node name="ParallaxBackground" parent="." instance=ExtResource("4_t01b4")]
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 

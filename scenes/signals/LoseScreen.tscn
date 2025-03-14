@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/signals/LoseScreen.gd" id="1_3iti2"]
 [ext_resource type="FontFile" uid="uid://dwijq5l78s8p2" path="res://assets/vcr_osd.ttf" id="1_xajxb"]
-[ext_resource type="Script" path="res://scenes/signals/link_button.gd" id="2_x8yq3"]
+[ext_resource type="Script" path="res://scenes/signals/LinkButtons.gd" id="2_x8yq3"]
 [ext_resource type="Texture2D" uid="uid://bt8gb54hjkhl1" path="res://assets/sunny-land/character/player.png" id="3_eqyao"]
 [ext_resource type="PackedScene" uid="uid://bcsnyw4t6pnw2" path="res://scenes/enviroments/ParallaxBg.tscn" id="4_53jed"]
 
@@ -68,7 +68,7 @@ position = Vector2(576, 296)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_lxqg3")
 autoplay = "default"
-frame_progress = 0.50937
+frame_progress = 0.111532
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("4_53jed")]
 scale = Vector2(1.5, 1.5)
