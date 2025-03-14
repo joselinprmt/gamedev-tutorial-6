@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5hm0m4rrxlih"]
+
+[ext_resource type="FontFile" uid="uid://dwijq5l78s8p2" path="res://assets/vcr_osd.ttf" id="1_tywyp"]
+[ext_resource type="Script" path="res://scenes/signals/LifeCount.gd" id="1_w0seo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wr741"]
+font = ExtResource("1_tywyp")
+font_size = 30
+
+[node name="GUI" type="MarginContainer"]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_wr741")
+script = ExtResource("1_w0seo")

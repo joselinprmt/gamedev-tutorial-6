@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/game_objects/Spawner.gd" id="7_7cj3o"]
 [ext_resource type="Script" path="res://scenes/enviroments/AnimatedText.gd" id="9_2fui3"]
 [ext_resource type="FontFile" uid="uid://dwijq5l78s8p2" path="res://assets/vcr_osd.ttf" id="10_r0x4t"]
+[ext_resource type="PackedScene" uid="uid://b5hm0m4rrxlih" path="res://scenes/signals/LifeCounter.tscn" id="11_2up1n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3ry5"]
 texture = ExtResource("5_1kpvm")
@@ -263,10 +264,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yku8b"]
 size = Vector2(142, 130)
 
-[sub_resource type="LabelSettings" id="LabelSettings_yl2bt"]
-font = ExtResource("10_r0x4t")
-font_size = 30
-
 [node name="Level1" type="Node2D"]
 position = Vector2(129, 156)
 
@@ -405,18 +402,18 @@ position = Vector2(446, 165)
 collision_layer = 3
 collision_mask = 3
 
-[node name="Level Info" type="Label" parent="Player"]
-offset_left = -532.0
-offset_top = -286.0
-offset_right = -409.0
-offset_bottom = -259.0
-text = "LEVEL 1"
-label_settings = SubResource("LabelSettings_yl2bt")
-
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(971, -496)
 script = ExtResource("7_7cj3o")
 obstacle = ExtResource("6_uvhyf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" parent="CanvasLayer" instance=ExtResource("11_2up1n")]
+offset_left = 46.0
+offset_top = 36.0
+offset_right = 47.0
+offset_bottom = 63.0
 
 [connection signal="body_entered" from="AnimatedText/AnimatedText/Area2D" to="AnimatedText/AnimatedText" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="AnimatedText/AnimatedText2/Area2D" to="AnimatedText/AnimatedText2" method="_on_area_2d_body_entered"]

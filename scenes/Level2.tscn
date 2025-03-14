@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scenes/game_objects/Spawner.gd" id="8_wlxcv"]
 [ext_resource type="Script" path="res://scenes/enviroments/AnimatedText.gd" id="10_230lp"]
 [ext_resource type="PackedScene" uid="uid://c3ygm42vjlggr" path="res://scenes/game_objects/Oposum.tscn" id="12_7kejl"]
+[ext_resource type="PackedScene" uid="uid://b5hm0m4rrxlih" path="res://scenes/signals/LifeCounter.tscn" id="14_ga7lr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3ry5"]
 texture = ExtResource("5_y0j0p")
@@ -273,10 +274,6 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a0l68"]
 size = Vector2(142, 130)
-
-[sub_resource type="LabelSettings" id="LabelSettings_yl2bt"]
-font = ExtResource("7_2p8nu")
-font_size = 30
 
 [node name="Level2" type="Node2D"]
 position = Vector2(129, 156)
@@ -580,15 +577,13 @@ position = Vector2(99, 332)
 collision_layer = 3
 collision_mask = 3
 
-[node name="Level Info" type="Label" parent="Player"]
-offset_left = -532.0
-offset_top = -286.0
-offset_right = -409.0
-offset_bottom = -259.0
-text = "LEVEL 2
-"
-label_settings = SubResource("LabelSettings_yl2bt")
-metadata/_edit_use_anchors_ = true
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" parent="CanvasLayer" instance=ExtResource("14_ga7lr")]
+offset_left = 46.0
+offset_top = 36.0
+offset_right = 47.0
+offset_bottom = 63.0
 
 [connection signal="body_entered" from="Texts/AnimatedText/Area2D" to="Texts/AnimatedText" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Texts/AnimatedText2/Area2D" to="Texts/AnimatedText2" method="_on_area_2d_body_entered"]
