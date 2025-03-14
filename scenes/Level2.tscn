@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=4 uid="uid://ch36x5cpha3bm"]
+[gd_scene load_steps=22 format=4 uid="uid://ch36x5cpha3bm"]
 
 [ext_resource type="PackedScene" uid="uid://bcsnyw4t6pnw2" path="res://scenes/enviroments/ParallaxBg.tscn" id="1_0yisv"]
+[ext_resource type="Script" path="res://scenes/Level2.gd" id="1_ur5w2"]
 [ext_resource type="Texture2D" uid="uid://dpkb387a6vub" path="res://assets/sunny-land/environment/plant-house.png" id="2_qr6vc"]
 [ext_resource type="PackedScene" uid="uid://od43k880mxto" path="res://scenes/signals/WinArea.tscn" id="3_enxcy"]
 [ext_resource type="PackedScene" uid="uid://clguys4qchp5k" path="res://scenes/signals/LoseArea.tscn" id="4_ow763"]
@@ -277,6 +278,7 @@ size = Vector2(142, 130)
 
 [node name="Level2" type="Node2D"]
 position = Vector2(129, 156)
+script = ExtResource("1_ur5w2")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_0yisv")]
 scale = Vector2(2.5, 2.5)
@@ -298,6 +300,7 @@ texture = ExtResource("4_wf8ek")
 
 [node name="LoseArea" parent="." instance=ExtResource("4_ow763")]
 position = Vector2(943, 800)
+scene_name = "Level2"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1

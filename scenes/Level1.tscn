@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=4 uid="uid://yqmk0vpvnyxr"]
+[gd_scene load_steps=20 format=4 uid="uid://yqmk0vpvnyxr"]
 
 [ext_resource type="PackedScene" uid="uid://bc2fujtl13g10" path="res://scenes/game_objects/Player.tscn" id="1"]
+[ext_resource type="Script" path="res://scenes/Level1.gd" id="1_74m4k"]
 [ext_resource type="PackedScene" uid="uid://bcsnyw4t6pnw2" path="res://scenes/enviroments/ParallaxBg.tscn" id="1_e04dm"]
 [ext_resource type="Texture2D" uid="uid://dpkb387a6vub" path="res://assets/sunny-land/environment/plant-house.png" id="1_vmane"]
 [ext_resource type="PackedScene" uid="uid://clguys4qchp5k" path="res://scenes/signals/LoseArea.tscn" id="3_kf3ox"]
@@ -266,6 +267,7 @@ size = Vector2(142, 130)
 
 [node name="Level1" type="Node2D"]
 position = Vector2(129, 156)
+script = ExtResource("1_74m4k")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_e04dm")]
 scale = Vector2(2.5, 2.5)

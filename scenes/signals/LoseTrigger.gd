@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var scene_name: String = "Level" + str(Global.level)
+@export var scene_name: String = "Level1"
 
 
 func _on_fall_area_body_entered(body):
