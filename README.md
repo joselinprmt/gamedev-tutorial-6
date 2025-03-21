@@ -1,3 +1,49 @@
+# Tutorial 6: Menu & In-Game GUI 🎮
+
+![image](https://github.com/user-attachments/assets/955f7346-45b2-44c1-bb41-07ad071eae61)
+
+## Penambahan yang dilakukan
+
+- Layar game over beserta button untuk kembali ke Main Menu
+- Fitur select stage di Main Menu
+- Layar dan efek transisi dari level 1 dan 2 (sudah diimplementasikan saat Tutorial 4)
+
+## Latihan: Membuat Main Menu, Select Stage, dan GUI LifeCounter
+
+![image](https://github.com/user-attachments/assets/918b97d1-d4ab-427a-8d73-6e6806f75226)
+
+Main Menu merupakan Margin Container yang strukturnya terdiri dari VBox, yang memiliki child element berupa title, button start serta select stage, dan AnimatedSprite dari karakter Fox pada walking state. Lalu digunakan juga Parallax Background sebagai latar belakang. Pada Main menu, digunakan anchor preset full rect. Selain itu, Link Button navigasi memiliki script yang terhubung dengan connection node untuk signal pressed():
+
+![image](https://github.com/user-attachments/assets/1faa20f6-04b5-43c1-9edc-b24e5c9b4868)
+
+Pada Link Button New game, set scene to loadnya ke path scenes/Level1.tscn, sedangkan untuk button select stage, ke scenes/signals/SelectStageMenu.tscn
+
+![image](https://github.com/user-attachments/assets/a3ffd995-ef50-4a1f-8811-63777f24ad27)
+
+Untuk SelectStageMenu, dibuat juga scene yang mirip dengan Main Menu. Bedanya, Fox memiliki animasi idle, dengan textnya adalah Select Stage dengan dua button, Level 1 dan Level 2. Terakhir, jangan lupa men-set Main Menu sebagai Main Scene pada Project > Project Settings > Application > Run > Main Scene.
+
+![image](https://github.com/user-attachments/assets/ce4c0db6-d688-421f-88e6-04bd47b1023f)
+
+Selanjutnya, Life Counter akan memanfaatkan variabel yang dapat terlihat oleh seluruh file pada project, yaitu global variable. Akan dibuat file script dengan men-inisialisasi variable level = 1 dan lives = 3. Lalu pada settings > globals, tambahkan script global.gd tadi. Buat juga scene LifeCounter berisi label untuk menampilkan state Level dan nyawa Player. Terakhir. tambahkan scene tadi sebagai child dari CanvasLayer, dan tambahkan layer tersebut sebagai child dengan posisi paling luar/bawah dari scene Level 1 dan 2, agar berada di paling depan.
+
+![image](https://github.com/user-attachments/assets/6d07e7a5-d619-4564-b315-8a4a77fcbd75)
+
+![image](https://github.com/user-attachments/assets/e378772e-eb31-4df8-9d60-1d8cba7568f5)
+
+Dengan begitu, GUI sudah berhasil diimplementasikan, dan tidak hard coded seperti pada tutorial 4.
+
+## Latihan: Membuat Layar Game Over dan Transisi Level
+
+![image](https://github.com/user-attachments/assets/0a820dcd-6457-4203-ac38-74b4304b0104)
+
+Untuk layar game over, implementasinya mirip dengan main menu, menggunakan margin container, yang di dalamnya berisi Vbox, dengan tulisan "GAME OVER", animasi Fox, dan Link Button untuk navigasi ke Main menu. Selain itu, tambahkan juga script yang akan me-reset nyawa menjadi 3 kembali setelah game over, dengan cara men-set Global.lives = 3.
+
+![image](https://github.com/user-attachments/assets/b8090f8e-deb2-4716-887b-ed981fe7d699)
+
+Selanjutnya, untuk layar transisi level, akan menampilkan karakter Fox, teks, beserta animasinya dengan AnimationPlayer. AnimationPlayer akan mem-play visible ratio dari label, dari 0 ke 100 dalam 3 detik, untuk animasi teks.
+
+Dengan begitu, main menu, fitur pilih stage, game over, dan transisi level telah berhasil diimplementasikan ✨
+
 # Tutorial 4: Basic 2D Level Design 🎮
 
 ![image](https://github.com/user-attachments/assets/e3972c7c-0504-463e-a046-96adf90e0c65)
