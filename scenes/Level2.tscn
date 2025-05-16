@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://ch36x5cpha3bm"]
+[gd_scene load_steps=24 format=4 uid="uid://ch36x5cpha3bm"]
 
 [ext_resource type="PackedScene" uid="uid://bcsnyw4t6pnw2" path="res://scenes/enviroments/ParallaxBg.tscn" id="1_0yisv"]
 [ext_resource type="Script" path="res://scenes/Level2.gd" id="1_ur5w2"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scenes/enviroments/AnimatedText.gd" id="10_230lp"]
 [ext_resource type="PackedScene" uid="uid://c3ygm42vjlggr" path="res://scenes/game_objects/Oposum.tscn" id="12_7kejl"]
 [ext_resource type="PackedScene" uid="uid://b5hm0m4rrxlih" path="res://scenes/signals/LifeCounter.tscn" id="14_ga7lr"]
+[ext_resource type="Texture2D" uid="uid://e3ame8eswm5" path="res://assets/snowflake.png" id="14_wm82q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3ry5"]
 texture = ExtResource("5_y0j0p")
@@ -275,6 +276,14 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a0l68"]
 size = Vector2(142, 130)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3fupu"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(3000, 100, 1)
+gravity = Vector3(0, 98, 0)
+scale_min = 0.01
+scale_max = 0.05
 
 [node name="Level2" type="Node2D"]
 position = Vector2(129, 156)
@@ -579,6 +588,14 @@ position = Vector2(1596, -512)
 position = Vector2(99, 332)
 collision_layer = 3
 collision_mask = 3
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-34, -1382)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_3fupu")
+texture = ExtResource("14_wm82q")
+lifetime = 10.0
+visibility_rect = Rect2(-100, -100, 5000, 2000)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

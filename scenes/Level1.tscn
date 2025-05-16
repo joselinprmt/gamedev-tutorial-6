@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://yqmk0vpvnyxr"]
+[gd_scene load_steps=21 format=4 uid="uid://yqmk0vpvnyxr"]
 
 [ext_resource type="PackedScene" uid="uid://bc2fujtl13g10" path="res://scenes/game_objects/Player.tscn" id="1"]
 [ext_resource type="Script" path="res://scenes/Level1.gd" id="1_74m4k"]
@@ -265,6 +265,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yku8b"]
 size = Vector2(142, 130)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p7ynk"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(2000, 10, 1)
+gravity = Vector3(0, 98, 0)
+scale_max = 10.0
+color = Color(0.835333, 0.916845, 0.967007, 1)
+
 [node name="Level1" type="Node2D"]
 position = Vector2(129, 156)
 script = ExtResource("1_74m4k")
@@ -408,6 +416,13 @@ collision_mask = 3
 position = Vector2(971, -496)
 script = ExtResource("7_7cj3o")
 obstacle = ExtResource("6_uvhyf")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(21, -457)
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_p7ynk")
+lifetime = 4.0
+visibility_rect = Rect2(-100, -100, 5000, 2000)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
