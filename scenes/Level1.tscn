@@ -416,6 +416,8 @@ collision_mask = 3
 position = Vector2(971, -496)
 script = ExtResource("7_7cj3o")
 obstacle = ExtResource("6_uvhyf")
+timer = 15
+init_time = 2
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(21, -457)

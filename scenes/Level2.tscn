@@ -321,6 +321,7 @@ tile_set = SubResource("TileSet_oswxw")
 position = Vector2(959, -1290)
 script = ExtResource("8_wlxcv")
 obstacle = ExtResource("7_7n8bf")
+timer = 12
 init_time = 30
 
 [node name="Texts" type="Node" parent="."]
